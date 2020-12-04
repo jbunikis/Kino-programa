@@ -1,0 +1,3 @@
+﻿  kinas.cpp
+D:\Viko\~Coalge\c++\kinas\kinas.cpp(15,9): warning C4101: 'Sales': unreferenced local variable
+  kinas.vcxproj -> D:\Viko\~Coalge\c++\kinas\x64\Debug\kinas.exe

@@ -1,0 +1,2 @@
+D:\Viko\~Coalge\c++\kinas\x64\Debug\kinas.exe
+D:\Viko\~Coalge\c++\kinas\x64\Debug\kinas.pdb
