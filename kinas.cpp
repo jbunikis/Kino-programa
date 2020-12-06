@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -11,28 +12,13 @@ int main()
     
     int a;
     string Filmai[10][10];
-    string Darbuotojai[10];
+    string Darbuotojai[10][3];
     int Sales[10];
-    int FilmSk = 4;
+    int FilmSk = 0;
     int DarbSk = 0;
-    int salSk = 0;
-    Filmai[1][0] = "filmlas";
-    Filmai[1][1] = "00:00";
-    Filmai[1][2] = "00:01";
-    Filmai[2][0] = "and";
-    Filmai[2][1] = "01:00";
-    Filmai[2][2] = "01:01";
-    Filmai[3][0] = "tre";
-    Filmai[3][1] = "02:00";
-    Filmai[3][2] = "02:01";
-    Filmai[4][0] = "tre4";
-    Filmai[4][1] = "03:00";
-    Filmai[4][2] = "03:01";
-
+    string tempTekstas;
     while (1) {
-        //Filmai[0][0] = "stop";
-
-       
+               
         cout << "\nKino teatras\n";
         cout << "Pasirinkite norima meniu\n";
 
@@ -45,21 +31,34 @@ int main()
                 cout << "1. Prideti filma\n2. atspauzdinti sarasa\n3. Istrinti filma\n0. Atgal\n";
                 cin >> a;
                 if (a == 1) {
+                    
                     cout << "Iveskite filmo pavadinima\n";
-                    string pavadinimas;
-
-                    cin >> pavadinimas;
-                    Filmai[FilmSk+1][0] = pavadinimas;
+                    getline(cin >> ws, tempTekstas);
+                    Filmai[FilmSk+1][0] = tempTekstas;
                     cout << "Kiek seansu bus?\n";
                     int sk;
                     cin >> sk;
-                    sk = sk++;
-                    cout << "Iveskite seansu laikus  00:00 formatu\n";
+                    sk = sk * 2;
+                    
                     for (int i = 1; i < sk; i++) {
                         cout << "\n";
-                        string TempLaikas;
-                        cin >> TempLaikas;
-                        Filmai[FilmSk+1][i] = TempLaikas;
+                        cout << "Iveskite seansu laikus  00:00 formatu\n";
+                        
+                        
+                        getline(cin >> ws, tempTekstas);
+                        Filmai[FilmSk+1][i] = tempTekstas;
+                        while (1) {
+
+                            cout << "iveskite sales numeri\n";
+                            getline(cin >> ws, tempTekstas);
+                            if (tempTekstas == "1" || tempTekstas == "2" || tempTekstas == "3" || tempTekstas == "4" || tempTekstas == "5" || tempTekstas == "6" || tempTekstas == "7" || tempTekstas == "8" || tempTekstas == "9") {
+                                i++;
+                                tempTekstas = "sales numeris: " + tempTekstas + "   ";
+                                Filmai[FilmSk + 1][i] = tempTekstas;
+                                break;
+                            }
+                            cout << "blogai pasirinkta sale\n";
+                        }
                     }
                     FilmSk++;
                     cout << "\nFilmas suvestas\n";
@@ -69,16 +68,16 @@ int main()
                     for (int i = 1; i <= FilmSk; i++) {
                         for (string x : Filmai[i]) {
                             if (x != "") {
-                                cout << " " << x << "\n";
+                                cout << " " << x;
                             }
                         }
+                        cout << "\n";
                     }
                 }
                 else if (a == 3) {
                     cout << "Kuri istrinti\n";
                     cin >> a;
                     if (a <= FilmSk) {
-                        string temp3;
                         int temp = a + 1;
 
                         for (a; a <= FilmSk; a++) {
@@ -96,7 +95,7 @@ int main()
                         }
                         FilmSk--;
                     }
-                    else {
+                    else { 
                         cout << "Blogai pasirinkta filmo numers\n";
                     }
                 }
@@ -108,6 +107,74 @@ int main()
         }
 
         else if (a == 2) {
+            while (1) {
+                cout << "\n";
+                cout << "Darbuotoju meniu\n";
+                cout << "1. Prideti darbuotoja\n2. Atspauzdinti darbuotoju sarasa\n3. Atleisti darbuotoja\n0. Atgal\n";
+                cin >> a;
+                if (a == 1) {
+                    int tempsk = 0;
+                    cout << "Iveskite darbuotojo varda\n";
+                    getline(cin >> ws, tempTekstas);
+                    Darbuotojai[DarbSk+ 1][tempsk] = tempTekstas;
+                    tempsk++;
+                    cout << "Kokios darbuotojo pareigos?\n";
+                    getline(cin >> ws, tempTekstas);
+                    Darbuotojai[DarbSk + 1][tempsk] = tempTekstas;
+                    tempsk++;
+                    cout << "Kokia darbuotojo alga?\n";
+                    getline(cin >> ws, tempTekstas);
+                    Darbuotojai[DarbSk + 1][tempsk] = tempTekstas;
+                    DarbSk++;
+                    cout << "\nDarbuotojas ivestas\n";
+                }
+                else if (a == 2){
+                    for (int i = 1; i <= DarbSk; i++) {
+                        for (string x : Darbuotojai[i]) {
+                            if (x != "") {
+                                cout  << x << " ";
+                            }
+                        }
+                        cout << "\n";
+                    }
+                
+                }
+                else if (a == 3) {
+                    cout << "kuri Darbuotoja istrinti?\n";
+
+                    cout << "Kuri istrinti\n";
+                    cin >> a;
+                    if (a <= DarbSk) {
+                        int temp = a + 1;
+
+                        for (a; a <= DarbSk; a++) {
+                            int temp2 = 0;
+                            for (string x : Darbuotojai[a]) {
+                                if (x != "") {
+                                    Darbuotojai[a][temp2] = Darbuotojai[temp][temp2];
+                                    temp2++;
+                                }
+                                else {
+                                    break;
+                                }
+                            }
+                            temp++;
+                        }
+                        DarbSk--;
+                    }
+                    else {
+                        cout << "darbuotojas neegzistuoja\n";
+                    }
+
+                }
+                else if (a == 0) {
+                    break;
+                }
+                else {
+                    cout << " Blogas pasirinkimas\n";
+                }
+            
+            }
 
 
         }
